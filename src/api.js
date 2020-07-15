@@ -1,4 +1,5 @@
 'use strict';
+import $ from 'jquery';
 
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/nhemerling';
 
