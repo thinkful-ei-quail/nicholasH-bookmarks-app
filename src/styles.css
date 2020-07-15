@@ -53,3 +53,7 @@ button:hover {
 ul {
   list-style: none;
 }
+
+.js-bookmark-element {
+  flex-direction: row;
+}
