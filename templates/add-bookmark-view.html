@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookmarks App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>My Bookmarks</h1>
+        </header>
+        <main>
+            <form>
+                <label for="url">Add New Bookmark:</label>
+                <input type="text" id="bookmark-url" value="url">
+            </form>
+            <form>
+                <input type="text" id="bookmark-title" value="title">
+            </form>
+            <div class="bookmark-rating js-bookmark-rating">
+                <p>3 Stars</p>
+            </div>
+            <form class="js-bookmark-description">
+                <input type="text" id="bookmark-description" value="desc" />
+            </form>
+            <div class="button-row">
+                <button class="cancel js-cancel">
+                    <span class="button-label">Cancel</span>
+                </button>
+                <button class="create js-create">
+                    <span class="button-label">Create</span>
+                </button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

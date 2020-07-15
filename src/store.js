@@ -1,5 +1,4 @@
 'use strict';
-import $ from 'jquery';
 
 const bookmarks = [];
 let adding = false;
