@@ -31,6 +31,29 @@ const generateInitialView = function (bookmarkString) {
     </div>`
 }
 
+const generateAddBookmarkView = function () {
+  return `
+    <form class="new-bookmark js-new-bookmark">
+
+      <label for="bookmark-url">Add New Bookmark:</label>
+      <input type="text" id="bookmark-url" value="" placeholder="url" required/>
+
+      <input type="text" id="bookmark-title" value="" placeholder="title" required/>
+
+      <input type="text" id="bookmark-rating" value="" placeholder="rating, 1 - 5" required/>
+
+      <input type="text" id="bookmark-description" value="" placeholder="add description (optional)" />
+
+      <button class="cancel js-cancel">
+          <span class="button-label">Cancel</span>
+      </button>
+
+      <button type="submit" value="submit">Create</button>
+
+    </form>
+  `
+}
+
 
 const generateBookmarkElement = function (bookmark) {
   let bookmarkTitle = `<span class="bookmark">${bookmark.title}</span>`;
@@ -53,18 +76,48 @@ const generateBookmarkString = function (bookmarkList) {
 
 const render = function () {
   let bookmarks = [...store.bookmarks];
-  if (!bookmarks.expanded) {
+  if (!bookmarks.expanded && !store.adding) {
     const bookmarksListString = generateBookmarkString(bookmarks);
     const initialView = generateInitialView(bookmarksListString);
-  $('main').html(initialView);
-  } else if (bookmarks.expanded) {
-    
+    $('main').html(initialView);
+  } else if (store.adding) {
+    const addBookmarkView = generateAddBookmarkView();
+    $('main').html(addBookmarkView)
   }
 };
 
 /* Event Listeners */
 
+const handleNewBookmark = function () {
+  $('main').on('click', '.js-new-bookmark', event  => {
+    // console.log('`handleNewBookmark` ran');
+    store.adding = true;
+    // console.log(store.adding);
+    render();
+  });
+};
+
+const handleCancel = function () {
+  $('main').on('click', '.js-cancel', event => {
+    // console.log('`handleCancel` ran');
+    store.adding = false;
+    // console.log(store.adding);
+    render();
+  });
+};
+
+const handleNewBookmarkCreate = function () {
+  $('main').on('submit', '.js-new-bookmark', event => {
+    console.log('`handleNewBookmarkCreate` ran');
+    
+  });
+}
+ 
 const bindEventListeners = function () {
+  handleNewBookmark();
+  handleCancel();
+  handleNewBookmarkCreate();
+
 
 };
 
