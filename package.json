@@ -1,0 +1,20 @@
+{
+  "name": "bookmarks-app",
+  "version": "1.0.0",
+  "description": "An app that allows the user to keep track of their bookmarks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhemerling/bookmarks-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhemerling/bookmarks-app/issues"
+  },
+  "homepage": "https://github.com/nhemerling/bookmarks-app#readme"
+}
