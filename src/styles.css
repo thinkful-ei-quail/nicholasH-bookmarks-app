@@ -65,3 +65,7 @@ li.js-bookmark-element {
 .bookmark-title {
   cursor: pointer;
 }
+
+.error-container {
+  color: #ff0000;
+}

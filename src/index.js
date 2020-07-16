@@ -13,7 +13,6 @@ const main = function() {
         bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
         myBookmarks.render();
     })
-
   myBookmarks.bindEventListeners();
   myBookmarks.render();
 };

@@ -15,14 +15,14 @@ const generateInitialView = function (bookmarkString) {
           </button>
           <form class="js-filter-by">
               <select id="min-rating" name="min-rating">
-                  <option value="0">Filter By:</option>
+                  <option value="" disabled selected>Filter By</option>
                   <option value="1">1 star</option>
                   <option value="2">2 stars</option>
                   <option value="3">3 stars</option>
                   <option value="4">4 stars</option>
                   <option value="5">5 stars</option>
               </select>
-              <input type="submit">
+              <input type="submit" value="Submit">
           </form>
       </div>
       <ul class="bookmark-list js-bookmark-list">
@@ -40,6 +40,7 @@ const generateAddBookmarkView = function () {
       <input type="text" id="bookmark-title" name="bookmark-title" placeholder="title" required />
 
       <select id="bookmark-rating" name="bookmark-rating" required>
+        <option value="" disable>rating</option>
         <option value="1">1 star</option>
         <option value="2">2 stars</option>
         <option value="3">3 stars</option>
@@ -57,7 +58,6 @@ const generateAddBookmarkView = function () {
     </div>
   `
 };
-
 
 const generateBookmarkElement = function (bookmark) {
   // let bookmarkTitle = `<span class="bookmark">${bookmark.title}</span>`;
@@ -111,11 +111,19 @@ const generateBookmarkString = function (bookmarkList) {
   return bookmarks.join('');
 };
 
+const generateError = function (message) {
+  return `
+    <section class="error-content row-container">
+      <button id="cancel-error">x</button>
+      <p>${message}</p>
+    </section>
+  `;
+};
+
 /* Render */
 
 const render = function () {
   let bookmarks = [...store.bookmarks];
-
   if (!store.adding) {
     const bookmarksListString = generateBookmarkString(bookmarks);
     const initialView = generateInitialView(bookmarksListString);
@@ -126,7 +134,14 @@ const render = function () {
   };
 };
 
-
+const renderError = function () {
+  if (store.error) {
+    const errorMsg = generateError(store.error);
+    $('.error-container').html(errorMsg);
+  } else {
+    $('.error-container').empty();
+  };
+};
 
 /* Event Listeners */
 
@@ -144,6 +159,8 @@ const handleCancel = function () {
     // console.log('`handleCancel` ran');
     store.adding = false;
     // console.log(store.adding);
+    store.setError(null);
+    renderError();
     render();
   });
 };
@@ -152,27 +169,30 @@ const handleNewBookmarkCreate = function () {
   $('main').on('click', '.js-create', event => {
     event.preventDefault();
     // console.log('`handleNewBookmarkCreate` ran');
-
     const newUrl = $('#bookmark-url').val();
     const newTitle = $('#bookmark-title').val();
     const newRating = $('#bookmark-rating').val();
     const newDesc = $('#bookmark-desc').val();
-
     const newBookmarkData = {
       url: newUrl,
       title: newTitle,
       rating: newRating,
       desc: newDesc
     };
-
     api.createBookmark(newBookmarkData)
       .then((newBookmark) => {
         store.addBookmark(newBookmark);
         store.adding = false;
+        store.setError(null);
+        // console.log(store.error);
+        renderError();
         render();
       })
       .catch((error) => {
-        console.log(`handleNewBookmarkCreate error: ${error.message}`);
+        // console.log(`handleNewBookmarkCreate error: ${error.message}`);
+        store.setError(error.message);
+        // console.log(error.message);
+        renderError();
       });
   });
 };
@@ -208,21 +228,28 @@ const getBookmarkIdFromElement = function (bookmark) {
 const handleDeleteBookmarkClicked = function () {
   $('main').on('click', '.js-bookmark-delete', event => {
     // console.log('`handleDeleteBookmarkClicked` ran');
-
     const id = getBookmarkIdFromElement(event.currentTarget);
-
     api.deleteBookmark(id)
       .then(() => {
         store.findAndDelete(id);
         render();
       })
       .catch((error) => {
-        console.log(`handleDeleteBookmarkClicked error: ${error.message}`);
+        // console.log(`handleDeleteBookmarkClicked error: ${error.message}`);
+        store.setError(error.message);
+        renderError();
       });
   });
-}
+};
 
- 
+const handleCloseError = function () {
+  $('.error-container').on('click', '#cancel-error', event => {
+    //console.log('lets close this error');
+    store.setError(null);
+    renderError();
+  })
+};
+
 const bindEventListeners = function () {
   handleNewBookmark();
   handleCancel();
@@ -230,6 +257,7 @@ const bindEventListeners = function () {
   handleFilterBy();
   handleExpand();
   handleDeleteBookmarkClicked();
+  handleCloseError();
 
 
 };
