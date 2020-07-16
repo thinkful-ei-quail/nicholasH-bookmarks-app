@@ -20,6 +20,7 @@ body {
   display: flex;
   flex-direction: row;
   margin: 10px;
+  justify-content: space-between;
 }
 
 header {
@@ -59,4 +60,8 @@ ul.bookmark-list {
 li.js-bookmark-element {
   margin: 5px 0;
   border: 1px solid #000000;
+}
+
+.bookmark-title {
+  cursor: pointer;
 }

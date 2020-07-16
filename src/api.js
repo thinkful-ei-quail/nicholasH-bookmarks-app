@@ -4,15 +4,28 @@ import $ from 'jquery';
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/nhemerling';
 
 function deleteBookmark(id) {
-
+  return fetch(`${BASE_URL}/bookmarks/${id}`, {
+    method: 'DELETE'
+  });
 };
 
 function updateBookmark(id, updateData) {
-
+  const newData = JSON.stringify(updateData);
+  return fetch(`${BASE_URL}/bookmarks/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: newData
+  })
+    .then(res => res.json())
+    .then(data => data)
+    .catch(error => console.log(`updateBookmark ${error.message}`)
+    );
 };
 
-function createBookmark(title) {
-  const newBookmark = JSON.stringify({ title });
+function createBookmark(bookmark) {
+  const newBookmark = JSON.stringify(bookmark);
 
   return fetch(`${BASE_URL}/bookmarks`, {
     method: 'POST',
@@ -21,9 +34,10 @@ function createBookmark(title) {
     },
     body: newBookmark
   })
-    .then(res => console.log(res.json()))
-    .then(data => console.log(data))
-    .catch(error => error.message = 'Bookmark not found.');
+    .then(res => res.json())
+    .then(data => data)
+    .catch(error => console.log(`createBookmark ${error.message}`)
+    );
 };
 
 function getBookmarks() {

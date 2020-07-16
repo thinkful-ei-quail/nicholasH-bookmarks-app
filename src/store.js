@@ -13,7 +13,17 @@ const addBookmark = function (bookmark) {
   this.bookmarks.push(bookmark);
 };
 
+const filterBookmarks = function (bookmarkList) {
+  return bookmarkList.filter((bookmark) => bookmark.rating >= this.filter);
+};
 
+const toggleExpand = function (bookmark) {
+  bookmark.expanded = !bookmark.expanded;
+}
+
+const findAndDelete = function (id) {
+  this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
+}
 
 
 export default {
@@ -22,5 +32,8 @@ export default {
   error,
   filter,
   findById,
-  addBookmark
+  addBookmark,
+  filterBookmarks,
+  toggleExpand,
+  findAndDelete
 };
