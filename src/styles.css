@@ -1,19 +1,28 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Cinzel', serif;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #000000;
-  }
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #000000;
+}
+
+header {
+  font-family: 'Cinzel', serif;
+  border: 1px solid #000000;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+main {
+  font-family: 'Times New Roman', Times, serif;
+}
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-align: center;
 }
 
 .row-container {
@@ -23,48 +32,37 @@ body {
   justify-content: space-between;
 }
 
-header {
-  
-  text-align: center;
-  margin: 5px;
-  max-width: 800px;
-  border: 1px solid #000000;
-  margin: auto;
-  margin-bottom: 5px;
-  padding: 0 10px;
-}
+/* Bookmark List */
 
-main {
-
-  font-family: 'Times New Roman', Times, serif;
-  flex: 1;
-  text-align: center;
-}
-
-button {
-    padding: 5px;
-}
-  
-button:hover {
-    cursor: pointer;
-}
-  
-.hidden {
-    display: none;
-}
-
-ul.bookmark-list {
+.bookmark-list {
   list-style: none;
+  padding: 0;
 }
 
-li.js-bookmark-element {
-  margin: 5px 0;
+.js-bookmark-element {
+  margin: 10px 0;
   border: 1px solid #000000;
 }
+
+/* Buttons */
 
 .bookmark-title {
   cursor: pointer;
 }
+
+button, .button, #min-rating {
+  padding: 20px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.bookmark-delete {
+  padding: 5px 20px;
+}
+
+/* Error Msgs */
 
 .error-container {
   color: #ff0000;

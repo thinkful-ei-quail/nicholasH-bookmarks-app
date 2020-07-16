@@ -8,7 +8,7 @@ import api from './api';
 
 const generateInitialView = function (bookmarkString) {
   return `
-    <div class="container">
+    <div>
       <div class="row-container">
           <button class="new-bookmark js-new-bookmark">
               <span class="button-label">New Bookmark</span>
@@ -22,7 +22,7 @@ const generateInitialView = function (bookmarkString) {
                   <option value="4">4 stars</option>
                   <option value="5">5 stars</option>
               </select>
-              <input type="submit" value="Submit">
+              <input type="submit" class="button" value="Submit">
           </form>
       </div>
       <ul class="bookmark-list js-bookmark-list">
@@ -81,7 +81,7 @@ const generateBookmarkElement = function (bookmark) {
             </button>
           </div>
           <div class="bookmark-rating js-bookmark-rating">
-              <p>${bookmark.rating} / 5</p>
+              <h2>${bookmark.rating} / 5</h2>
           </div>
         </div>
         <div class="description js-description">
@@ -96,7 +96,7 @@ const generateBookmarkElement = function (bookmark) {
             <h2>${bookmark.title}</h2>
           </div>
           <div class="bookmark-rating js-bookmark-rating">
-              <p>${bookmark.rating} / 5</p>
+              <h2>${bookmark.rating} / 5</h2>
           </div>
         </div>
       </li>
