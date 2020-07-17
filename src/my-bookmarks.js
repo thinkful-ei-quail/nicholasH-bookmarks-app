@@ -13,9 +13,10 @@ const generateInitialView = function (bookmarkString) {
           <button class="new-bookmark js-new-bookmark">
               <span class="button-label">New Bookmark</span>
           </button>
-          <form class="js-filter-by">
+          <form class="filter-by js-filter-by">
+              <label for="min-rating" class="visually-hidden">Min Rating</label>
               <select id="min-rating" name="min-rating">
-                  <option value="" disabled selected>Filter By</option>
+                  <option value="" disabled selected>Min Rating</option>
                   <option value="1">1 star</option>
                   <option value="2">2 stars</option>
                   <option value="3">3 stars</option>
@@ -33,14 +34,17 @@ const generateInitialView = function (bookmarkString) {
 
 const generateAddBookmarkView = function () {
   return `
+    <h2>Add New Bookmark</h2>
     <form class="container">
-      <label for="bookmark-url">Add New Bookmark:</label>
+      <label for="bookmark-url" class="visually-hidden">Url</label>
       <input type="text" id="bookmark-url" name="bookmark-url" placeholder="url" required />
 
+      <label for="bookmark-title" class="visually-hidden">Title</label>
       <input type="text" id="bookmark-title" name="bookmark-title" placeholder="title" required />
 
-      <select id="bookmark-rating" name="bookmark-rating" required>
-        <option value="" disable>rating</option>
+      <label for="bookmark-rating" class="visually-hidden">Rating</label>
+      <select id="bookmark-rating" name="bookmark-rating">
+        <option value="" disable selected>rating</option>
         <option value="1">1 star</option>
         <option value="2">2 stars</option>
         <option value="3">3 stars</option>
@@ -48,6 +52,7 @@ const generateAddBookmarkView = function () {
         <option value="5">5 stars</option>
       </select>
 
+      <label for="bookmark-desc" class="visually-hidden">Description</label>
       <textarea id="bookmark-desc" name="bookmark-desc" placeholder="add description (optional)" style:"height:200px"></textarea>
     </form>
     <div class="row-container">
@@ -63,9 +68,9 @@ const generateBookmarkElement = function (bookmark) {
   // let bookmarkTitle = `<span class="bookmark">${bookmark.title}</span>`;
   if (bookmark.expanded) {
     return `
-      <li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
+      <li class="bookmark-element js-bookmark-element" data-bookmark-id="${bookmark.id}">
         <div class="row-container">
-          <div class="bookmark-title-exp js-bookmark-title">
+          <div class="bookmark-title js-bookmark-title">
             <h2>${bookmark.title}</h2>
           </div>
           <div>
@@ -77,7 +82,7 @@ const generateBookmarkElement = function (bookmark) {
         <div class="row-container" id="expand-${bookmark.id}">
           <div>
             <button class="visit-site js-visit-site">
-                <a href="${bookmark.url}">Visit Site</a>
+                <a href="${bookmark.url}" target="_blank">Visit ${bookmark.title}</a>
             </button>
           </div>
           <div class="bookmark-rating js-bookmark-rating">
@@ -90,7 +95,7 @@ const generateBookmarkElement = function (bookmark) {
       </li> 
     `} else {
       return `
-      <li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
+      <li class="bookmark-element js-bookmark-element" data-bookmark-id="${bookmark.id}">
         <div class="row-container">
           <div class="bookmark-title js-bookmark-title">
             <h2>${bookmark.title}</h2>
@@ -114,8 +119,8 @@ const generateBookmarkString = function (bookmarkList) {
 const generateError = function (message) {
   return `
     <section class="error-content row-container">
-      <button id="cancel-error">x</button>
-      <p>${message}</p>
+      <button id="cancel-error">close</button>
+      <h3>${message}</h3>
     </section>
   `;
 };
@@ -209,7 +214,7 @@ const handleFilterBy = function () {
 };
 
 const handleExpand = function () {
-  $('main').on('click', `.js-bookmark-title`, event => {
+  $('main').on('click', `.js-bookmark-element`, event => {
     //console.log(`handleExpand ran`);
     const id = getBookmarkIdFromElement(event.currentTarget);
     const bookmark = store.findById(id);

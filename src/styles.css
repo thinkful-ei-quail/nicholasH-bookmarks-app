@@ -1,3 +1,5 @@
+/* General Style */
+
 * {
   box-sizing: border-box;
 }
@@ -5,16 +7,19 @@
 body {
   margin: 10px;
   padding: 10px;
-  border: 1px solid #000000;
-  border-radius: 10px;
+  border: 1px solid #8b8b8b;
+  /* border-radius: 10px; */
+  min-height: 600px;
 }
 
 header {
-  font-family: 'Rowdies', cursive;
-  /* font-family: 'Roboto', sans-serif; */
-  border: 1px solid #000000;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  /* font-family: 'Rowdies', cursive; */
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  /* border: 1px solid #000000;
+  border-radius: 10px; */
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
@@ -22,8 +27,13 @@ main {
   font-family: 'Roboto', sans-serif;
 }
 
+h2 {
+  margin: 15px 10px;
+}
+
 p {
   font-size: 18px;
+  margin: 15px 10px;
 }
 
 .container {
@@ -35,7 +45,7 @@ p {
 .row-container {
   display: flex;
   flex-direction: row;
-  margin: 10px;
+  margin: 0px;
   justify-content: space-between;
 }
 
@@ -46,20 +56,21 @@ p {
   padding: 0;
 }
 
-.js-bookmark-element {
-  margin: 10px 0;
+.bookmark-element {
+  margin: 0;
   border: 1px solid #000000;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
-.bookmark-title-exp {
-  padding: 0px;
+.bookmark-element:not(:first-child) {
+  border-top: none;
 }
 
 .description {
-  border: 1px solid #000000; 
-  border-radius: 10px;
+  /* border: 1px solid #000000; 
+  border-radius: 10px; */
   margin: 10px;
+  padding: 0;
 }
 
 .description p {
@@ -71,11 +82,18 @@ p {
 #bookmark-url, #bookmark-title, #bookmark-rating {
   width: 100%;
   padding: 15px;
-  border: 1px solid #000000;
-  border-radius: 10px;
+  border: 1px solid #8b8b8b;
+  /* border-radius: 10px; */
   margin: 10px 0;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+}
+
+#bookmark-url:hover,
+#bookmark-title:hover,
+#bookmark-rating:hover,
+textarea:hover {
+  border: 1px solid #3b3b3b;
 }
 
 label {
@@ -88,55 +106,72 @@ textarea {
   resize: vertical;
   padding: 15px;
   margin: 10px 0;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   height: 150px;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
 }
 
-/* Buttons */
-
-.bookmark-title:hover,
-.bookmark-title-exp:hover {
-  cursor: pointer;
-  color: #d2a2fa;
+.visually-hidden {
+  display: none;
 }
 
-.bookmark-title, .bookmark-title-exp {
-  cursor: pointer;
+/* Buttons & Clicking */
+
+.bookmark-element {
+  transition: 0.5s;
 }
 
+.bookmark-element:hover {
+  cursor: pointer;
+  background-color: #f8f8f8;
+}
 
 button, .button, #min-rating {
   padding: 20px;
   border: 1px solid #000000;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+  transition: 0.5s;
 }
 
 button:hover, .button:hover, #min-rating:hover, #bookmark-rating:hover {
   cursor: pointer;
 }
 
+.new-bookmark {
+  background-color: #ffffff;
+}
+
 .new-bookmark:hover {
   background-color: #a2faf6;
 }
 
+input[type="submit"] {
+  background-color: #ffffff;
+}
+
 .bookmark-delete {
   padding: 10px;
+  margin: 15px 10px;
+  color: #8b8b8b;
+  border-color: #8b8b8b;
 }
 
 .bookmark-delete:hover {
   background-color: #ffc1c1;
+  color: #414141;
+  border-color: #414141;
 }
 
 .visit-site {
   padding: 10px;
+  margin: 15px 10px;
 }
 
 .visit-site:hover {
-  background-color: #d2a2fa;
+  background-color: #dddddd;
 }
 
 a {
@@ -145,32 +180,94 @@ a {
 }
 
 #cancel-error {
-  padding: 5px 10px;
+  padding: 5px 20px;
   margin: 10px;
   color: #ff0000;
-  border: 1px solid #ff0000;
-  border-radius: 10px;
+  border: 1px solid #f77b7b;
+  /* border-radius: 10px; */
+  background-color: #ffe9e9;
+}
+
+#cancel-error:hover {
   background-color: #ffd0d0;
+  transition: 0.4s;
 }
 
 .cancel, .create {
-  padding: 20px 50px;
+  padding: 20px 70px;
   font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+}
+
+.cancel {
+  color: #8b8b8b;
+  border-color: #8b8b8b;
+}
+
+.cancel:hover {
+  color: #000000;
+  border-color: #000000;
 }
 
 .create {
   background-color: #a2faf6;
 }
 
+.create:hover {
+  background-color: #66fff7;
+}
+
 /* Error Msgs */
 
 .error-content {
   color: #ff0000;
-  border: 1px solid #ff0000;
+  border: 1px solid #f77b7b;
   background-color: #ffecec;
   padding: 5px;
   justify-content: left;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+}
+
+/* Desktop View */
+
+@media all and (min-width: 600px) {
+
+  body {
+    max-width: 600px;
+    margin: 10px auto;
+  }
+
+  header {
+    font-size: 30px;
+    border: none;
+  }
+
+  button, .button, #min-rating {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  .cancel, .create {
+    padding: 20px 100px;
+  }
+
+  #cancel-error {
+    font-size: 20px;
+  }
+
+
+
+
+
+
+
+
+
+
+
 }
