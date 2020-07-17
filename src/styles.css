@@ -6,17 +6,24 @@ body {
   margin: 10px;
   padding: 10px;
   border: 1px solid #000000;
+  border-radius: 10px;
 }
 
 header {
-  font-family: 'Cinzel', serif;
+  font-family: 'Rowdies', cursive;
+  /* font-family: 'Roboto', sans-serif; */
   border: 1px solid #000000;
+  border-radius: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
 
 main {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  font-size: 18px;
 }
 
 .container {
@@ -42,28 +49,128 @@ main {
 .js-bookmark-element {
   margin: 10px 0;
   border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.bookmark-title-exp {
+  padding: 0px;
+}
+
+.description {
+  border: 1px solid #000000; 
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.description p {
+  padding: 5px;
+}
+
+/* New Bookmark Form */
+
+#bookmark-url, #bookmark-title, #bookmark-rating {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  margin: 10px 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+label {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  height: 150px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }
 
 /* Buttons */
 
-.bookmark-title {
+.bookmark-title:hover,
+.bookmark-title-exp:hover {
+  cursor: pointer;
+  color: #d2a2fa;
+}
+
+.bookmark-title, .bookmark-title-exp {
   cursor: pointer;
 }
+
 
 button, .button, #min-rating {
   padding: 20px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }
 
-button:hover {
+button:hover, .button:hover, #min-rating:hover, #bookmark-rating:hover {
   cursor: pointer;
 }
 
+.new-bookmark:hover {
+  background-color: #a2faf6;
+}
+
 .bookmark-delete {
-  padding: 5px 20px;
+  padding: 10px;
+}
+
+.bookmark-delete:hover {
+  background-color: #ffc1c1;
+}
+
+.visit-site {
+  padding: 10px;
+}
+
+.visit-site:hover {
+  background-color: #d2a2fa;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+#cancel-error {
+  padding: 5px 10px;
+  margin: 10px;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  border-radius: 10px;
+  background-color: #ffd0d0;
+}
+
+.cancel, .create {
+  padding: 20px 50px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.create {
+  background-color: #a2faf6;
 }
 
 /* Error Msgs */
 
-.error-container {
+.error-content {
   color: #ff0000;
+  border: 1px solid #ff0000;
+  background-color: #ffecec;
+  padding: 5px;
+  justify-content: left;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }

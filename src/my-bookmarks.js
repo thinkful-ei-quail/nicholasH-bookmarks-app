@@ -50,7 +50,7 @@ const generateAddBookmarkView = function () {
 
       <textarea id="bookmark-desc" name="bookmark-desc" placeholder="add description (optional)" style:"height:200px"></textarea>
     </form>
-    <div class="row">
+    <div class="row-container">
         <button class="cancel js-cancel">
             <span class="button-label">Cancel</span>
         </button>
@@ -65,7 +65,7 @@ const generateBookmarkElement = function (bookmark) {
     return `
       <li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
         <div class="row-container">
-          <div class="bookmark-title js-bookmark-title">
+          <div class="bookmark-title-exp js-bookmark-title">
             <h2>${bookmark.title}</h2>
           </div>
           <div>
