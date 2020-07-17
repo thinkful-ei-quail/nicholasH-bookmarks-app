@@ -1,4 +1,6 @@
 # bookmarks-app
+By Nicholas Hemerling
+
 An app that allows the user to keep track of their bookmarks.
 
 As a user: 
