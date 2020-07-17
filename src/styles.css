@@ -160,6 +160,13 @@ button:hover, .button:hover, #min-rating:hover, #bookmark-rating:hover {
 input[type="submit"] {
   padding: 21px;
   background-color: #ffffff;
+  color: #8b8b8b;
+  border-color: #8b8b8b; 
+}
+
+input[type="submit"]:hover {
+  color: #000000;
+  border: 1px solid #000000;
 }
 
 .bookmark-delete,
@@ -178,7 +185,7 @@ input[type="submit"] {
 }
 
 .bookmark-edit:hover {
-  background-color: #a2faf6;
+  background-color: #ffffff;
 }
 
 .visit-site {
