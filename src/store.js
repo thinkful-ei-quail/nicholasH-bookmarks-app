@@ -48,4 +48,4 @@ export default {
   findAndDelete,
   setError,
   findAndUpdate
-};
+}

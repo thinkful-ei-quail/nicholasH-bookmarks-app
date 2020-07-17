@@ -62,4 +62,4 @@ export default {
   createBookmark,
   updateBookmark,
   deleteBookmark
-};
+}
