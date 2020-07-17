@@ -19,15 +19,22 @@ const filterBookmarks = function (bookmarkList) {
 
 const toggleExpand = function (bookmark) {
   bookmark.expanded = !bookmark.expanded;
-}
+};
 
 const findAndDelete = function (id) {
   this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
-}
+};
 
 const setError = function (error) {
   this.error = error;
-}
+};
+
+const findAndUpdate = function (id, updateData) {
+  const currentBookmark = this.findById(id);
+  Object.assign(currentBookmark, updateData);
+};
+
+
 
 export default {
   bookmarks,
@@ -39,5 +46,6 @@ export default {
   filterBookmarks,
   toggleExpand,
   findAndDelete,
-  setError
+  setError,
+  findAndUpdate
 };

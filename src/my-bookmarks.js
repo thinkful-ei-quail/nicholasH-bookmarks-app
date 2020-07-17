@@ -14,16 +14,15 @@ const generateInitialView = function (bookmarkString) {
               <span class="button-label">New Bookmark</span>
           </button>
           <form class="filter-by js-filter-by">
-              <label for="min-rating" class="visually-hidden">Min Rating</label>
+              <label for="min-rating" class="visually-hidden">Set Min Rating</label>
               <select id="min-rating" name="min-rating">
-                  <option value="" disabled selected>Min Rating</option>
-                  <option value="1">1 star</option>
-                  <option value="2">2 stars</option>
-                  <option value="3">3 stars</option>
-                  <option value="4">4 stars</option>
-                  <option value="5">5 stars</option>
+                  <option value="1">1 / 5</option>
+                  <option value="2">2 / 5</option>
+                  <option value="3">3 / 5</option>
+                  <option value="4">4 / 5</option>
+                  <option value="5">5 / 5</option>
               </select>
-              <input type="submit" class="button" value="Submit">
+              <input type="submit" class="button" value="Set Min Rating">
           </form>
       </div>
       <ul class="bookmark-list js-bookmark-list">
@@ -36,20 +35,19 @@ const generateAddBookmarkView = function () {
   return `
     <h2>Add New Bookmark</h2>
     <form class="container">
-      <label for="bookmark-url" class="visually-hidden">Url</label>
-      <input type="text" id="bookmark-url" name="bookmark-url" placeholder="url" required />
-
       <label for="bookmark-title" class="visually-hidden">Title</label>
       <input type="text" id="bookmark-title" name="bookmark-title" placeholder="title" required />
 
+      <label for="bookmark-url" class="visually-hidden">Url</label>
+      <input type="text" id="bookmark-url" name="bookmark-url" placeholder="url" required />
+
       <label for="bookmark-rating" class="visually-hidden">Rating</label>
       <select id="bookmark-rating" name="bookmark-rating">
-        <option value="" disable selected>rating</option>
-        <option value="1">1 star</option>
-        <option value="2">2 stars</option>
-        <option value="3">3 stars</option>
-        <option value="4">4 stars</option>
-        <option value="5">5 stars</option>
+        <option value="1">Rating: 1 / 5</option>
+        <option value="2">Rating: 2 / 5</option>
+        <option value="3">Rating: 3 / 5</option>
+        <option value="4">Rating: 4 / 5</option>
+        <option value="5">Rating: 5 / 5</option>
       </select>
 
       <label for="bookmark-desc" class="visually-hidden">Description</label>
@@ -73,10 +71,17 @@ const generateBookmarkElement = function (bookmark) {
           <div class="bookmark-title js-bookmark-title">
             <h2>${bookmark.title}</h2>
           </div>
-          <div>
-            <button class="bookmark-delete js-bookmark-delete">
-                <span class="button-label">Delete</span>
-            </button>
+          <div class="row-container">
+            <div>
+              <button class="bookmark-edit js-bookmark-edit">
+                <span class="button-label">Edit Description</span>
+              </button>
+            </div>
+            <div>
+              <button class="bookmark-delete js-bookmark-delete">
+                  <span class="button-label">Delete</span>
+              </button>
+            </div>
           </div>
         </div>
         <div class="row-container" id="expand-${bookmark.id}">
@@ -92,8 +97,12 @@ const generateBookmarkElement = function (bookmark) {
         <div class="description js-description">
               <p>${bookmark.desc}</p>
         </div>
-      </li> 
-    `} else {
+      </li>`
+      // <form class="edit-desc js-edit-desc">
+      //     <label for="description" class="visually-hidden">Description</label>
+      //     <input id="description" name="description" type="text" value="${bookmark.desc}" />
+      // </form>
+  } else {
       return `
       <li class="bookmark-element js-bookmark-element" data-bookmark-id="${bookmark.id}">
         <div class="row-container">
@@ -215,13 +224,21 @@ const handleFilterBy = function () {
 
 const handleExpand = function () {
   $('main').on('click', `.js-bookmark-element`, event => {
-    //console.log(`handleExpand ran`);
+    // console.log(`handleExpand ran`);
+    // console.log(`event target: ${event.target.className}`);
     const id = getBookmarkIdFromElement(event.currentTarget);
     const bookmark = store.findById(id);
-    store.toggleExpand(bookmark);
-    // console.log(bookmark.expanded);
-    render();
-  })
+
+    if (!bookmark.expanded) {
+      store.toggleExpand(bookmark);
+      render();
+    } else if (bookmark.expanded && event.target.className !== 'button-label') {
+      store.toggleExpand(bookmark);
+      render();
+    } else {
+      return true;
+    }
+  });
 };
 
 const getBookmarkIdFromElement = function (bookmark) {
@@ -255,6 +272,58 @@ const handleCloseError = function () {
   })
 };
 
+// const handleEditDescSubmit = function () {
+//   $('main').on('change', '.js-edit-desc', event => {
+//     event.preventDefault();
+//     console.log('Whatever');
+//     const id = getBookmarkIdFromElement(event.currentTarget);
+//     const bookmarkDesc = $(event.currentTarget).find('#description').val();
+//     // console.log(id);
+//     // console.log(bookmarkDesc);
+//     api.updateBookmark(id, { desc: bookmarkDesc })
+//       .then(() => {
+//         store.findAndUpdate(id, { desc: bookmarkDesc });
+//         render();
+//       })
+//       .catch((error) => {
+//         store.setError(error.message);
+//         renderError();
+//       })
+//   });
+// };
+
+const handleEditBookmark = function () {
+  $('main').on('click', '.js-bookmark-edit', event => {
+    let desc = $('.js-description').children().get(0);
+    const id = getBookmarkIdFromElement(event.currentTarget);
+    
+
+    if (desc.isContentEditable) {
+      console.log(desc.textContent);
+      let newDesc = desc.textContent;
+      desc.contentEditable = false;
+      $(event.target).html('Edit Description');
+      api.updateBookmark(id, { desc: newDesc })
+      .then(() => {
+        store.findAndUpdate(id, { desc: newDesc });
+        render();
+      })
+      .catch((error) => {
+        store.setError(error.message);
+        renderError();
+      });
+
+    } else {
+      desc.contentEditable = true;
+      desc.focus();
+      $(event.target).html('Save Edit');
+
+    }
+
+    
+  });
+}
+
 const bindEventListeners = function () {
   handleNewBookmark();
   handleCancel();
@@ -263,7 +332,8 @@ const bindEventListeners = function () {
   handleExpand();
   handleDeleteBookmarkClicked();
   handleCloseError();
-
+  // handleEditDescSubmit();
+  handleEditBookmark();
 
 };
 

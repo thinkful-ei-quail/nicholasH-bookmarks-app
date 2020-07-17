@@ -58,7 +58,7 @@ p {
 
 .bookmark-element {
   margin: 0;
-  border: 1px solid #000000;
+  border: 1px solid #8b8b8b;
   /* border-radius: 10px; */
 }
 
@@ -67,14 +67,22 @@ p {
 }
 
 .description {
-  /* border: 1px solid #000000; 
-  border-radius: 10px; */
+  border: 1px solid #8b8b8b;
+  background-color: #ffffff;
+  /* border-radius: 10px; */
   margin: 10px;
   padding: 0;
 }
 
 .description p {
   padding: 5px;
+}
+
+#description {
+  width: 95%;
+  color: grey;
+  font-size: 20px;
+  margin: 10px;
 }
 
 /* New Bookmark Form */
@@ -124,12 +132,13 @@ textarea {
 
 .bookmark-element:hover {
   cursor: pointer;
-  background-color: #f8f8f8;
+  background-color: #e8e4ff;
 }
 
 button, .button, #min-rating {
   padding: 20px;
-  border: 1px solid #000000;
+  border: 1px solid #8b8b8b;
+  background-color: #ffffff;
   /* border-radius: 10px; */
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
@@ -149,20 +158,27 @@ button:hover, .button:hover, #min-rating:hover, #bookmark-rating:hover {
 }
 
 input[type="submit"] {
+  padding: 21px;
   background-color: #ffffff;
 }
 
-.bookmark-delete {
+.bookmark-delete,
+.bookmark-edit {
   padding: 10px;
   margin: 15px 10px;
   color: #8b8b8b;
   border-color: #8b8b8b;
 }
 
-.bookmark-delete:hover {
+.bookmark-delete:hover,
+.bookmark-edit:hover {
   background-color: #ffc1c1;
   color: #414141;
   border-color: #414141;
+}
+
+.bookmark-edit:hover {
+  background-color: #a2faf6;
 }
 
 .visit-site {
@@ -171,7 +187,7 @@ input[type="submit"] {
 }
 
 .visit-site:hover {
-  background-color: #dddddd;
+  background-color: #d3ffd2;
 }
 
 a {
@@ -211,6 +227,7 @@ a {
 
 .create {
   background-color: #a2faf6;
+  border-color: #000000;
 }
 
 .create:hover {
