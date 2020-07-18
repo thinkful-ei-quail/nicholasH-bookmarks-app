@@ -340,4 +340,4 @@ const bindEventListeners = function () {
 export default {
   render,
   bindEventListeners
-};
+}

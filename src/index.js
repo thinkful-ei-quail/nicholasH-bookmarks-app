@@ -15,6 +15,6 @@ const main = function() {
     })
   myBookmarks.bindEventListeners();
   myBookmarks.render();
-};
+}
 
 $(main);
