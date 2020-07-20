@@ -126,13 +126,17 @@ textarea {
 
 /* Buttons & Clicking */
 
-.bookmark-element {
+.bookmark-title{
   transition: 0.5s;
+  padding: 0;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
 }
 
-.bookmark-element:hover {
+.bookmark-title:hover {
   cursor: pointer;
-  background-color: #e8e4ff;
+  background-color: #d5cdff;
 }
 
 button, .button, #min-rating {
