@@ -1,7 +1,7 @@
 # bookmarks-app
 By Nicholas Hemerling
 
-https://thinkful-ei-quail.github.io/nicholasH-bookmarks-app/
+Link to GitHub Pages: https://thinkful-ei-quail.github.io/nicholasH-bookmarks-app/
 
 An app that allows the user to keep track of their bookmarks.
 
