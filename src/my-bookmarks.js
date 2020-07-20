@@ -94,20 +94,8 @@ const generateBookmarkElement = function (bookmark) {
                 <h2>${bookmark.rating} Stars</h2>
             </div>
           </div>
-<<<<<<< HEAD
-        </div>
-        <div class="row-container" id="expand-${bookmark.id}">
-          <div>
-            <button class="visit-site js-visit-site">
-                <a href="${bookmark.url}" target="_blank">Visit ${bookmark.title}</a>
-            </button>
-          </div>
-          <div class="bookmark-rating js-bookmark-rating">
-              <h2>${bookmark.rating} Stars</h2>
-=======
           <div class="description js-description">
                 <p>${bookmark.desc}</p>
->>>>>>> gh-pages
           </div>
         </li>`
       // <form class="edit-desc js-edit-desc">
@@ -116,19 +104,6 @@ const generateBookmarkElement = function (bookmark) {
       // </form>
   } else {
       return `
-<<<<<<< HEAD
-      <li class="bookmark-element js-bookmark-element" data-bookmark-id="${bookmark.id}">
-        <div class="row-container">
-          <div class="bookmark-title js-bookmark-title">
-            <h2>${bookmark.title}</h2>
-          </div>
-          <div class="bookmark-rating js-bookmark-rating">
-              <h2>${bookmark.rating} Stars</h2>
-          </div>
-        </div>
-      </li>
-      `
-=======
             <li class="bookmark-element js-bookmark-element" data-bookmark-id="${bookmark.id}">
               <div class="row-container">
                 <button class="bookmark-title js-bookmark-title">
@@ -140,7 +115,6 @@ const generateBookmarkElement = function (bookmark) {
               </div>
             </li>
         `
->>>>>>> gh-pages
     }
 };
 
