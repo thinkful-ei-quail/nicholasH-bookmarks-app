@@ -16,11 +16,11 @@ const generateInitialView = function (bookmarkString) {
           <form class="filter-by js-filter-by">
               <label for="min-rating" class="visually-hidden">Set Min Rating</label>
               <select id="min-rating" name="min-rating">
-                  <option value="1">1 / 5</option>
-                  <option value="2">2 / 5</option>
-                  <option value="3">3 / 5</option>
-                  <option value="4">4 / 5</option>
-                  <option value="5">5 / 5</option>
+                  <option value="1">1 Star</option>
+                  <option value="2">2 Stars</option>
+                  <option value="3">3 Stars</option>
+                  <option value="4">4 Stars</option>
+                  <option value="5">5 Stars</option>
               </select>
               <input type="submit" class="button" value="Set Min Rating">
           </form>
@@ -43,11 +43,11 @@ const generateAddBookmarkView = function () {
 
       <label for="bookmark-rating" class="visually-hidden">Rating</label>
       <select id="bookmark-rating" name="bookmark-rating">
-        <option value="1">Rating: 1 / 5</option>
-        <option value="2">Rating: 2 / 5</option>
-        <option value="3">Rating: 3 / 5</option>
-        <option value="4">Rating: 4 / 5</option>
-        <option value="5">Rating: 5 / 5</option>
+        <option value="1">Rating: 1 Star</option>
+        <option value="2">Rating: 2 Stars</option>
+        <option value="3">Rating: 3 Stars</option>
+        <option value="4">Rating: 4 Stars</option>
+        <option value="5">Rating: 5 Stars</option>
       </select>
 
       <label for="bookmark-desc" class="visually-hidden">Description</label>
@@ -91,7 +91,7 @@ const generateBookmarkElement = function (bookmark) {
             </button>
           </div>
           <div class="bookmark-rating js-bookmark-rating">
-              <h2>${bookmark.rating} / 5</h2>
+              <h2>${bookmark.rating} Stars</h2>
           </div>
         </div>
         <div class="description js-description">
@@ -110,7 +110,7 @@ const generateBookmarkElement = function (bookmark) {
             <h2>${bookmark.title}</h2>
           </div>
           <div class="bookmark-rating js-bookmark-rating">
-              <h2>${bookmark.rating} / 5</h2>
+              <h2>${bookmark.rating} Stars</h2>
           </div>
         </div>
       </li>
