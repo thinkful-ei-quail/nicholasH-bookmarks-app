@@ -9,10 +9,11 @@ import api from './api';
 const generateInitialView = function (bookmarkString) {
   return `
     <div>
-      <div class="row-container">
+      <div class="container">
           <button class="new-bookmark js-new-bookmark">
               <span class="button-label">New Bookmark</span>
           </button>
+        
           <form class="filter-by js-filter-by">
               <label for="min-rating" class="visually-hidden">Set Min Rating</label>
               <select id="min-rating" name="min-rating">
@@ -52,12 +53,12 @@ const generateAddBookmarkView = function () {
 
       <label for="bookmark-desc" class="visually-hidden">Description</label>
       <textarea id="bookmark-desc" name="bookmark-desc" placeholder="add description (optional)" style:"height:200px"></textarea>
+      <input type="submit" class="create js-create"/>
     </form>
-    <div class="row-container">
-        <button class="cancel js-cancel">
-            <span class="button-label">Cancel</span>
-        </button>
-        <button class="create js-create">Create</button>
+    <div class="container">
+      <button class="cancel js-cancel">
+          <span class="button-label">Cancel</span>
+      </button>
     </div>
   `
 };
