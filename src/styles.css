@@ -85,6 +85,13 @@ p {
   margin: 10px;
 }
 
+.filter-by {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
 /* New Bookmark Form */
 
 #bookmark-url, #bookmark-title, #bookmark-rating {
@@ -139,7 +146,7 @@ textarea {
   background-color: #d5cdff;
 }
 
-button, .button, #min-rating {
+button, .button, #min-rating, input[type="submit"] {
   padding: 20px;
   border: 1px solid #8b8b8b;
   background-color: #ffffff;
@@ -149,7 +156,11 @@ button, .button, #min-rating {
   transition: 0.5s;
 }
 
-button:hover, .button:hover, #min-rating:hover, #bookmark-rating:hover {
+button:hover,
+.button:hover,
+#min-rating:hover,
+#bookmark-rating:hover,
+input[type="submit"]:hover {
   cursor: pointer;
 }
 
@@ -179,6 +190,10 @@ input[type="submit"]:hover {
   margin: 15px 10px;
   color: #8b8b8b;
   border-color: #8b8b8b;
+}
+
+.bookmark-delete {
+  margin-left: 0;
 }
 
 .bookmark-delete:hover,
@@ -229,6 +244,8 @@ a {
 .cancel {
   color: #8b8b8b;
   border-color: #8b8b8b;
+  margin-top: 10px;
+  font-size: 18px;
 }
 
 .cancel:hover {
